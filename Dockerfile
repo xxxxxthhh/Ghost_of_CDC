@@ -12,7 +12,7 @@ USER ghostuser
 COPY package*.json ./
 
 # Install Ghost CLI
-RUN npm install -g ghost-cli@latest
+RUN npm install ghost-cli@latest
 
 # Install project dependencies
 RUN npm install --production
@@ -28,4 +28,4 @@ RUN chmod 0777 content/adapters/storage
 EXPOSE 2368
 
 # Use the "ghost start" command to run the app
-CMD ["ghost", "run"]
+CMD ["npx", "ghost", "run"]
