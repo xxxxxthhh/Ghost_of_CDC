@@ -7,17 +7,17 @@ WORKDIR /usr/src/app
 # Create a new user "ghostuser" and switch to it
 RUN adduser --disabled-password --gecos '' ghostuser
 
-# Change ownership of the working directory to the ghostuser
-RUN chown ghostuser:ghostuser /usr/src/app
-
-# Switch to your new user
-USER ghostuser
-
 # Copy the package.json and package-lock.json files
 COPY package*.json ./
 
 # Install Ghost CLI locally
 RUN npm install ghost-cli@latest
+
+# Give ownership of the directory to the non-root user
+RUN chown -R ghostuser:ghostuser /usr/src/app
+
+# Switch to your new user
+USER ghostuser
 
 # Install project dependencies
 RUN npm install --production
