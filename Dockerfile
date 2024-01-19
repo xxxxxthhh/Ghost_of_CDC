@@ -4,6 +4,10 @@ FROM node:14-buster
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
+# Create a new user "ghostuser" and switch to it
+RUN adduser --disabled-password --gecos '' ghostuser
+USER ghostuser
+
 # Copy the package.json and package-lock.json files
 COPY package*.json ./
 
