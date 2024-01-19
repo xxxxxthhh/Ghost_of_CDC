@@ -1,0 +1,33 @@
+node_modules/
+bower_components/
+
+# Built files
+built/
+core/built/
+core/client/dist/
+
+# Ghost database
+content/data/*.db
+content/data/ghost*.db
+content/data/*.json
+
+# Images and files
+content/images/
+content/logs/
+content/adapters/storage/
+
+# Config files
+config*.json
+*.env
+
+# Certificates
+content/ssl/*
+
+# Yarn & npm
+yarn-error.log
+yarn.lock
+package-lock.json
+.npm/
+
+# Ghost CLI
+.ghost-cli
