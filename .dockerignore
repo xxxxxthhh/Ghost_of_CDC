@@ -1,0 +1,5 @@
+node_modules
+content/data/ghost-dev.db
+content/data/ghost-local.db
+content/logs
+config.development.json
