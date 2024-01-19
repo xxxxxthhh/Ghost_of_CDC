@@ -6,12 +6,17 @@ WORKDIR /usr/src/app
 
 # Create a new user "ghostuser" and switch to it
 RUN adduser --disabled-password --gecos '' ghostuser
+
+# Change ownership of the working directory to the ghostuser
+RUN chown ghostuser:ghostuser /usr/src/app
+
+# Switch to your new user
 USER ghostuser
 
 # Copy the package.json and package-lock.json files
 COPY package*.json ./
 
-# Install Ghost CLI
+# Install Ghost CLI locally
 RUN npm install ghost-cli@latest
 
 # Install project dependencies
@@ -27,5 +32,5 @@ RUN chmod 0777 content/adapters/storage
 # Tell Docker what port to expose
 EXPOSE 2368
 
-# Use the "ghost start" command to run the app
+# Use npx to run Ghost CLI commands
 CMD ["npx", "ghost", "run"]
