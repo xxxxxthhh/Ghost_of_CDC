@@ -1,0 +1,38 @@
+# fly.toml file generated for your-app-name on Fly
+app = "ghost-of-cdc"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  NODE_ENV = "production"
+  URL = "https://ghost-of-cdc.fly.dev"
+  # DATABASE_URL will be set as a secret through the Fly CLI
+  # GHOST_DB_PASSWORD will be set as a secret through the Fly CLI
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  internal_port = 2368
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "30s" # the time to wait before starting health checks
+    interval = "15s"
+    timeout = "2s"
+
